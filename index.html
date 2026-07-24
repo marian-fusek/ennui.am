@@ -1,123 +1,947 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ENNUI — Design & Language</title>
 <meta name="description" content="ENNUI is Marian Fusek and Linda Krestanova: design, language and creative direction working as one.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#f0eee9;--paper2:#e8e5de;--ink:#171716;--grey:#74726d;--line:rgba(23,23,22,.14);--serif:'Instrument Serif',serif;--sans:'Geist',sans-serif;--ease:cubic-bezier(.16,1,.3,1);--g:clamp(18px,3.2vw,52px);--mx:0;--my:0}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;background:var(--paper)}body{background:var(--paper);color:var(--ink);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}img{display:block;width:100%;height:auto}button{font:inherit;color:inherit}::selection{background:var(--ink);color:var(--paper)}
-#grain{position:fixed;inset:0;pointer-events:none;z-index:3000;opacity:.03;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-#cursor{position:fixed;left:0;top:0;width:6px;height:6px;background:#fff;border-radius:50%;pointer-events:none;z-index:5000;transform:translate(-50%,-50%);mix-blend-mode:difference;opacity:0;transition:width .28s var(--ease),height .28s var(--ease),border-radius .28s var(--ease),opacity .15s}#cursor.on{opacity:1}#cursor.link{width:44px;height:44px;background:#fff}.cursor-label{position:fixed;z-index:5001;pointer-events:none;color:#fff;mix-blend-mode:difference;font-size:9px;letter-spacing:.15em;text-transform:uppercase;opacity:0;transition:opacity .15s}.cursor-label.on{opacity:1}@media(pointer:fine){body,a,button,[data-hover]{cursor:none}}@media(pointer:coarse){#cursor,.cursor-label{display:none}}
-.grid{position:fixed;inset:0;padding:0 var(--g);display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(8px,1vw,18px);pointer-events:none;z-index:0;opacity:.48}.grid i{border-left:1px solid rgba(23,23,22,.07)}.grid i:last-child{border-right:1px solid rgba(23,23,22,.07)}
-.preloader{position:fixed;inset:0;z-index:4000;background:var(--paper);display:grid;place-items:center;transition:opacity .9s var(--ease),visibility .9s}.preloader.done{opacity:0;visibility:hidden}.preword{position:absolute;font-size:clamp(24px,5vw,74px);letter-spacing:-.05em;opacity:0;transform:translateY(16px);transition:.6s var(--ease)}.preword.show{opacity:1;transform:none}.preword.serif{font-family:var(--serif);font-style:italic;font-size:clamp(54px,11vw,170px)}
-header{position:fixed;inset:0 0 auto;height:72px;padding:0 var(--g);z-index:500;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;mix-blend-mode:difference;color:#fff;transition:transform .6s var(--ease)}header.hide{transform:translateY(-100%)}.logo{font-family:var(--serif);font-style:italic;font-size:25px}.nav{display:flex;gap:28px}.nav a,.status{font-size:10px;letter-spacing:.16em;text-transform:uppercase}.status{text-align:right}
-main,footer{position:relative;z-index:2}.hero{height:100svh;min-height:690px;padding:110px var(--g) 34px;overflow:hidden;position:relative}.hero-inner{height:100%;display:grid;grid-template-rows:auto 1fr auto;position:relative}.hero-kicker{display:flex;justify-content:space-between;color:var(--grey);font-size:10px;text-transform:uppercase;letter-spacing:.15em}.hero-stage{align-self:center;position:relative;perspective:1100px}.hero-display{font-size:clamp(58px,9.8vw,154px);line-height:.83;letter-spacing:-.078em;font-weight:400;text-align:center;transform:rotateX(calc(var(--my)*-2deg)) rotateY(calc(var(--mx)*3deg));transition:transform .13s linear;will-change:transform}.hero-line{display:block;will-change:transform,letter-spacing}.hero-line.one{transform:translateX(calc(var(--mx)*-18px))}.hero-line.two{transform:translateX(calc(var(--mx)*24px))}.hero-display em{font-family:var(--serif);font-style:italic;font-weight:400;display:inline-block;transform:translateY(calc(var(--my)*-8px)) rotate(calc(var(--mx)*1.5deg));text-shadow:calc(var(--mx)*10px) calc(var(--my)*8px) 24px rgba(23,23,22,.09)}.orbit{position:absolute;font-size:10px;line-height:1.5;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);transition:transform .18s linear}.o1{left:1%;top:18%;transform:translate(calc(var(--mx)*-10px),calc(var(--my)*-8px))}.o2{right:1%;top:23%;text-align:right;transform:translate(calc(var(--mx)*12px),calc(var(--my)*7px))}.o3{left:10%;bottom:9%;transform:translate(calc(var(--mx)*-6px),calc(var(--my)*10px))}.o4{right:10%;bottom:5%;text-align:right;transform:translate(calc(var(--mx)*8px),calc(var(--my)*-10px))}.hero-bottom{display:grid;grid-template-columns:1fr 2fr 1fr;align-items:end}.hero-bottom p{grid-column:2;max-width:610px;justify-self:center;text-align:center;font-size:clamp(14px,1.35vw,18px);line-height:1.5;color:#4c4b47}.scroll{justify-self:end;font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--grey)}
-.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:14px 0}.marquee-track{display:flex;width:max-content;will-change:transform}.marquee-group{display:flex;flex:none}.marquee span{font-size:10px;text-transform:uppercase;letter-spacing:.16em;padding-right:46px;white-space:nowrap}.marquee b{font-family:var(--serif);font-weight:400;font-style:italic;font-size:16px;margin:0 12px}
-.section{padding:clamp(120px,16vw,235px) var(--g);position:relative}.section-head{display:grid;grid-template-columns:2fr 7fr 3fr;align-items:start;margin-bottom:clamp(72px,10vw,150px)}.num,.eyebrow,.micro{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--grey)}.section-title{font-size:clamp(58px,10vw,148px);line-height:.82;letter-spacing:-.075em;font-weight:400}.section-title em{font-family:var(--serif);font-style:italic;font-weight:400}.micro{line-height:1.55;max-width:260px}.reveal{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease)}.reveal.in{opacity:1;transform:none}
-.services{background:var(--paper2)}.service-stage{min-height:68vh;display:grid;grid-template-columns:3fr 6fr 3fr;gap:24px}.service-index{list-style:none;border-top:1px solid var(--line)}.service-index button{width:100%;border:0;background:none;padding:18px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.1em;opacity:.4;transition:.45s var(--ease)}.service-index button.active,.service-index button:hover{opacity:1;padding-left:12px}.service-main{align-self:center;padding:0 2vw}.service-word{font-size:clamp(70px,11vw,170px);line-height:.78;letter-spacing:-.08em;transition:.35s var(--ease)}.service-word.swap{opacity:0;transform:translateY(18px)}.service-word em{font-family:var(--serif);font-style:italic}.service-copy{margin-top:42px;max-width:560px;font-size:clamp(17px,1.5vw,22px);line-height:1.45}.service-note{align-self:end;font-size:10px;text-transform:uppercase;letter-spacing:.15em;line-height:1.65;color:var(--grey)}
-.projects{overflow:hidden}.project-card{appearance:none;border:0;background:none;width:100%;display:block;position:relative;margin-top:clamp(80px,10vw,150px);text-align:left}.project-head{display:flex;align-items:center;justify-content:space-between;padding:0 0 14px;border-bottom:1px solid var(--line);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--grey)}.project-head span:last-child{display:inline-flex;gap:10px;align-items:center;transition:transform .45s var(--ease),color .45s}.project-card:hover .project-head span:last-child{transform:translateX(7px);color:var(--ink)}.project-media{width:100%;aspect-ratio:16/8.5;overflow:hidden;background:#e4e1da;position:relative;margin-top:18px}.project-media:before{content:"MIUNĀE";position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(72px,16vw,250px);line-height:.7;letter-spacing:-.085em;color:#111}.project-media:after{content:"";position:absolute;inset:0;border:1px solid rgba(23,23,22,.1);pointer-events:none}.project-media img{height:100%;object-fit:cover;object-position:center;transform:scale(1.01);transition:transform 1.25s var(--ease),filter .8s var(--ease)}.project-card:hover .project-media img{transform:scale(1.035)}.project-caption{display:grid;grid-template-columns:5fr 3fr 3fr;gap:clamp(20px,3vw,48px);align-items:start;padding-top:24px}.project-title{font-size:clamp(54px,9vw,132px);line-height:.78;letter-spacing:-.075em;font-weight:400}.project-title em{font-family:var(--serif);font-style:italic;font-weight:400}.project-detail .label{display:block;margin-bottom:10px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}.project-detail p{font-size:12px;line-height:1.62;color:#55534e}.project-open{margin-top:22px;display:inline-flex;align-items:center;gap:12px;font-size:10px;text-transform:uppercase;letter-spacing:.15em}.project-open i{font-style:normal;transition:transform .45s var(--ease)}.project-card:hover .project-open i{transform:translate(5px,-5px)}
-.duo{background:var(--ink);color:var(--paper)}.duo .micro,.duo .eyebrow,.duo .num{color:rgba(240,238,233,.5)}.duo-title{font-size:clamp(56px,10.4vw,160px);line-height:.8;letter-spacing:-.078em;font-weight:400;margin-bottom:clamp(110px,14vw,210px)}.duo-title em{font-family:var(--serif);font-style:italic}.people{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,8vw,130px)}.person:nth-child(2){margin-top:13vw}.portrait{aspect-ratio:4/5;overflow:hidden;background:#242423}.portrait img{height:108%;object-fit:cover;filter:grayscale(1) contrast(.95);transform:scale(1.02);transition:1s var(--ease)}.person:hover .portrait img{filter:grayscale(0);transform:scale(1)}.person-name{font-size:clamp(42px,6vw,86px);line-height:.9;letter-spacing:-.06em;font-weight:400;margin-top:26px}.role{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:rgba(240,238,233,.52);margin-top:13px}.bio{font-size:15px;line-height:1.7;color:rgba(240,238,233,.72);max-width:550px;margin-top:32px}.milestones{margin-top:34px;border-top:1px solid rgba(240,238,233,.18)}.milestone{display:grid;grid-template-columns:92px 1fr;gap:18px;padding:13px 0;border-bottom:1px solid rgba(240,238,233,.18);font-size:11px;line-height:1.45}.milestone time{color:rgba(240,238,233,.42)}.person-links{display:flex;gap:24px;margin-top:28px;font-size:10px;letter-spacing:.15em;text-transform:uppercase}.person-links a{border-bottom:1px solid rgba(240,238,233,.3);padding-bottom:4px}
-.manifesto{min-height:100svh;padding:var(--g);display:grid;place-items:center;position:relative}.manifesto p{font-size:clamp(58px,10vw,150px);line-height:.82;letter-spacing:-.078em;text-align:center}.manifesto em{font-family:var(--serif);font-style:italic}.manifesto .micro{position:absolute;left:var(--g);top:var(--g)}.manifesto .right{left:auto;right:var(--g);top:auto;bottom:var(--g);text-align:right}
-.contact{min-height:92svh;background:var(--paper2);padding:var(--g);display:grid;grid-template-rows:auto 1fr auto}.contact-top,.contact-bottom{display:flex;justify-content:space-between}.contact-email{align-self:center;text-align:center;font-size:clamp(48px,10vw,145px);line-height:.9;letter-spacing:-.075em}.contact-email em{font-family:var(--serif);font-style:italic}.contact-email:hover em{display:inline-block;transform:skewX(-8deg)}
-/* IMMERSIVE PROJECT OVERLAY */
-body.case-locked{position:fixed;left:0;right:0;width:100%;overflow:hidden}.case-overlay{--case-progress:0;position:fixed;inset:0;z-index:4200;background:#080807;color:#f0eee9;visibility:hidden;pointer-events:none;opacity:0;clip-path:inset(var(--case-top,50%) var(--case-right,50%) var(--case-bottom,50%) var(--case-left,50%));transition:clip-path .92s var(--ease),opacity .48s ease,visibility 0s linear .94s}.case-overlay[data-state="opening"],.case-overlay[data-state="open"],.case-overlay[data-state="closing"]{visibility:visible;pointer-events:auto;transition-delay:0s}.case-overlay[data-state="opening"],.case-overlay[data-state="open"]{opacity:1}.case-overlay[data-state="open"]{clip-path:inset(0)}.case-overlay[data-state="closing"]{opacity:.15;clip-path:inset(var(--case-top,50%) var(--case-right,50%) var(--case-bottom,50%) var(--case-left,50%))}.case-viewport{position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;background:#080807;scrollbar-width:none}.case-viewport::-webkit-scrollbar{display:none}.case-content{position:relative}.case-toolbar{position:fixed;z-index:30;inset:0 0 auto;height:72px;padding:0 var(--g);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;color:#fff;mix-blend-mode:difference;pointer-events:none}.case-toolbar>*{pointer-events:auto}.case-count,.case-live{font-size:9px;letter-spacing:.16em;text-transform:uppercase}.case-live{justify-self:end;position:relative;padding-bottom:4px}.case-live:after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}.case-live:hover:after{transform:scaleX(1);transform-origin:left}.case-close{position:relative;width:44px;height:44px;border:1px solid rgba(255,255,255,.34);border-radius:50%;background:transparent;transition:transform .55s var(--ease),background .35s}.case-close:before,.case-close:after{content:"";position:absolute;left:12px;right:12px;top:21px;height:1px;background:#fff}.case-close:before{transform:rotate(45deg)}.case-close:after{transform:rotate(-45deg)}.case-close:hover{transform:rotate(90deg) scale(1.08);background:rgba(255,255,255,.1)}.case-progress{position:fixed;z-index:31;left:0;top:0;width:100%;height:2px;background:rgba(255,255,255,.12)}.case-progress span{display:block;height:100%;width:calc(var(--case-progress)*100%);background:#fff;transition:width .08s linear}.cs-label{font-size:9px;line-height:1.4;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,238,233,.48)}.cs-hero{height:100svh;min-height:690px;position:relative;overflow:hidden;padding:96px var(--g) 32px;display:grid;grid-template-rows:auto 1fr auto;isolation:isolate;background:#ece9e2;color:#111}.cs-hero-image{position:absolute;z-index:-3;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.03);filter:contrast(1.02)}.cs-hero:after{content:"";position:absolute;z-index:-2;inset:0;background:linear-gradient(180deg,rgba(240,238,233,.18),rgba(240,238,233,.04) 50%,rgba(240,238,233,.18))}.cs-hero-aura{position:absolute;z-index:-1;left:50%;top:50%;width:min(72vw,1080px);aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(240,238,233,.56),rgba(240,238,233,.08) 48%,transparent 70%);mix-blend-mode:screen;animation:caseAura 13s ease-in-out infinite}@keyframes caseAura{50%{transform:translate(-50%,-50%) scale(1.08)}}.cs-hero-top,.cs-hero-bottom{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.16em;text-transform:uppercase}.cs-hero h2{align-self:center;text-align:center;font-size:clamp(92px,19vw,310px);line-height:.65;letter-spacing:-.09em;font-weight:500;mix-blend-mode:difference;color:#fff}.cs-intro{min-height:100svh;padding:clamp(140px,17vw,250px) var(--g);display:grid;grid-template-columns:2fr 7fr 3fr;gap:28px;align-items:start}.cs-intro h3,.cs-system-head h3,.cs-voice h3,.cs-live h3{font-size:clamp(62px,10vw,150px);line-height:.82;letter-spacing:-.075em;font-weight:400}.cs-intro h3 em,.cs-system-head h3 em,.cs-voice h3 em,.cs-live h3 em{font-family:var(--serif);font-style:italic;font-weight:400}.cs-intro>p{font-size:clamp(17px,1.55vw,23px);line-height:1.55;color:rgba(240,238,233,.7);max-width:520px}.cs-statement{min-height:100svh;padding:var(--g);display:grid;place-items:center;position:relative;background:#f0eee9;color:#171716}.cs-statement .cs-label{position:absolute;left:var(--g);top:var(--g);color:#74726d}.cs-statement p{text-align:center;font-size:clamp(68px,12vw,190px);line-height:.78;letter-spacing:-.08em}.cs-statement em{font-family:var(--serif);font-style:italic}.cs-gallery{padding:clamp(80px,10vw,150px) var(--g);display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(12px,1.2vw,22px);background:#0a0a09}.cs-shot{overflow:hidden;background:#151514;position:relative;min-height:56vw}.cs-shot.image-backed:before{content:"MIUNĀE";position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(50px,12vw,190px);letter-spacing:-.08em;color:#f0eee9}.cs-shot-caption{position:absolute;left:clamp(20px,3vw,48px);bottom:clamp(20px,3vw,48px);z-index:2;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:#111}.cs-shot img{width:100%;height:100%;object-fit:cover;transition:transform 1.15s var(--ease)}.cs-shot:hover img{transform:scale(1.035)}.cs-shot.a{grid-column:1/13;min-height:64vw}.cs-shot.b{grid-column:1/6;min-height:60vw;background:#e9e6df}.cs-shot.b img{object-fit:contain;padding:12%}.cs-shot.c{grid-column:6/13;min-height:60vw}.cs-shot.c img{object-position:center;transform:scale(1.02)}.cs-shot.c:hover img{transform:scale(1.055)}.cs-shot.d{grid-column:1/13;min-height:52vw}.cs-symbol-panel{display:flex;flex-direction:column;justify-content:space-between;padding:clamp(28px,4vw,64px);background:#e9e6df;color:#111}.cs-symbol-panel>span{font-size:10px;letter-spacing:.16em;line-height:1.65}.cs-hourglass{width:min(62%,280px);aspect-ratio:1/2;align-self:center;position:relative}.cs-hourglass:before,.cs-hourglass:after{content:"";position:absolute;left:0;right:0;height:46%;background:#111}.cs-hourglass:before{top:0;clip-path:polygon(0 0,100% 0,54% 100%,46% 100%)}.cs-hourglass:after{bottom:0;clip-path:polygon(46% 0,54% 0,100% 100%,0 100%)}.cs-type-panel{display:flex;align-items:center;justify-content:center;background:#e9e6df;color:#111}.cs-type-panel p{position:absolute;right:clamp(24px,4vw,60px);bottom:clamp(24px,4vw,60px);font-size:10px;line-height:1.65;letter-spacing:.14em;text-transform:uppercase;text-align:right}.cs-overgrown{font-size:clamp(74px,17vw,270px);line-height:.72;letter-spacing:-.085em;transform:rotate(-3deg)}.cs-system{padding:clamp(130px,16vw,230px) var(--g);background:#e9e6df;color:#171716}.cs-system-head{display:grid;grid-template-columns:2fr 7fr 3fr;gap:28px;margin-bottom:clamp(90px,12vw,170px)}.cs-system-head .cs-label{color:#74726d}.cs-system-head p{font-size:15px;line-height:1.65;color:#57554f;max-width:380px}.cs-system-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(23,23,22,.16);border-left:1px solid rgba(23,23,22,.16)}.cs-system-item{min-height:280px;padding:clamp(24px,3vw,45px);border-right:1px solid rgba(23,23,22,.16);border-bottom:1px solid rgba(23,23,22,.16);display:flex;flex-direction:column;justify-content:space-between;transition:background .55s var(--ease),color .55s var(--ease)}.cs-system-item:hover{background:#171716;color:#f0eee9}.cs-system-item h4{font-size:clamp(28px,3vw,48px);font-weight:400;letter-spacing:-.045em}.cs-system-item p{font-size:12px;line-height:1.65;max-width:320px;opacity:.66}.cs-voice{min-height:100svh;padding:clamp(130px,16vw,230px) var(--g);display:grid;align-items:center}.cs-voice-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(40px,9vw,150px);align-items:end}.cs-voice-copy blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(42px,6vw,90px);line-height:.95;margin-bottom:42px}.cs-voice-copy p{font-size:15px;line-height:1.7;color:rgba(240,238,233,.66);max-width:590px}.cs-live{min-height:100svh;padding:var(--g);display:grid;place-items:center;text-align:center;background:#f0eee9;color:#171716}.cs-live .cs-label{color:#74726d;margin-bottom:30px}.cs-live-link{display:inline-flex;margin-top:54px;border:1px solid rgba(23,23,22,.3);padding:18px 28px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;transition:background .45s var(--ease),color .45s var(--ease)}.cs-live-link:hover{background:#171716;color:#f0eee9}.cs-credits{display:grid;grid-template-columns:1fr 1fr;background:#111;border-top:1px solid rgba(240,238,233,.15)}.cs-credits>div{min-height:56vh;padding:clamp(40px,6vw,90px);border-right:1px solid rgba(240,238,233,.15);display:flex;flex-direction:column}.cs-credits h4{font-size:clamp(48px,7vw,104px);line-height:.9;letter-spacing:-.06em;font-weight:400;margin:40px 0}.cs-credits p{font-size:14px;line-height:1.65;color:rgba(240,238,233,.62);max-width:460px}.cs-credit-link{margin-top:auto;padding-top:50px;font-size:10px;letter-spacing:.15em;text-transform:uppercase}.cs-exit{min-height:60vh;padding:var(--g);display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;background:#080807}.cs-exit button{border:0;background:none;color:#f0eee9;font-size:clamp(52px,9vw,140px);line-height:.85;letter-spacing:-.07em;transition:font-family .25s,transform .55s var(--ease)}.cs-exit button:hover{font-family:var(--serif);font-style:italic;transform:scale(1.035)}
+:root{
+  --paper:#F0EEE9;
+  --paper-2:#E8E5DE;
+  --paper-3:#E2DED5;
+  --ink:#171716;
+  --soft:#585651;
+  --muted:#77746E;
+  --line:rgba(23,23,22,.12);
+  --line-2:rgba(23,23,22,.08);
+  --white:#FBFAF7;
+  --black:#0E0E0D;
+  --serif:'Instrument Serif',serif;
+  --sans:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --ease-soft:cubic-bezier(.22,1,.36,1);
+  --g:clamp(18px,3.2vw,52px);
+  --mx:0;
+  --my:0;
+  --case-progress:0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper);scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body.locked{position:fixed;left:0;right:0;overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit;color:inherit}
+img,video{display:block;max-width:100%}
+button{border:0;background:none}
+::selection{background:var(--ink);color:var(--paper)}
 
-@media(max-width:850px){header{grid-template-columns:1fr auto}.nav{display:none}.status{display:none}.hero{min-height:620px}.orbit{display:none}.hero-bottom{grid-template-columns:1fr}.hero-bottom p{grid-column:1}.scroll{display:none}.section-head{grid-template-columns:1fr;gap:24px}.num{margin-bottom:20px}.service-stage{grid-template-columns:1fr}.service-note{display:none}.service-main{min-height:360px;display:flex;flex-direction:column;justify-content:center}.project-media{width:100%;aspect-ratio:4/3}.project-caption{grid-template-columns:1fr;gap:28px}.project-title{margin-top:6px}.project-head span:last-child{display:none}.people{grid-template-columns:1fr}.person:nth-child(2){margin-top:90px}.manifesto{min-height:80svh}.contact{min-height:75svh}.grid{grid-template-columns:repeat(6,1fr)}.grid i:nth-child(n+7){display:none}.case-toolbar{height:62px}.case-count{display:none}.case-live{font-size:8px}.cs-hero{min-height:620px;padding:82px 18px 24px}.cs-hero-top span:last-child,.cs-hero-bottom span:last-child{display:none}.cs-hero h2{font-size:clamp(72px,22vw,124px)}.cs-intro,.cs-system-head{grid-template-columns:1fr}.cs-intro{padding:120px 18px}.cs-gallery{padding:64px 18px;grid-template-columns:1fr}.cs-shot.a,.cs-shot.b,.cs-shot.c,.cs-shot.d{grid-column:1;min-height:115vw}.cs-system{padding:110px 18px}.cs-system-grid{grid-template-columns:1fr}.cs-system-item{min-height:240px}.cs-voice{padding:110px 18px}.cs-voice-grid{grid-template-columns:1fr}.cs-credits{grid-template-columns:1fr}.cs-credits>div{min-height:62vh;border-right:0;border-bottom:1px solid rgba(240,238,233,.15)}.cs-exit{min-height:55vh}.cs-overgrown{font-size:24vw}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+#grain{position:fixed;inset:0;pointer-events:none;z-index:3000;opacity:.03;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#cursor{position:fixed;left:0;top:0;width:6px;height:6px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:5200;opacity:0;transform:translate(-50%,-50%);transition:width .22s var(--ease),height .22s var(--ease),opacity .15s ease,border-radius .22s var(--ease)}
+#cursor.on{opacity:1}
+#cursor.link{width:38px;height:38px}
+.cursor-label{position:fixed;left:0;top:0;pointer-events:none;z-index:5201;opacity:0;mix-blend-mode:difference;color:#fff;font-size:9px;letter-spacing:.16em;text-transform:uppercase;transform:translate(16px,14px);transition:opacity .15s ease}
+.cursor-label.on{opacity:1}
+@media(hover:hover) and (pointer:fine){body,a,button,[data-hover],.slider-rail{cursor:none}}
+@media(pointer:coarse){#cursor,.cursor-label{display:none}}
+
+.grid{position:fixed;inset:0;padding:0 var(--g);display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(8px,1vw,18px);pointer-events:none;z-index:0;opacity:.46}
+.grid i{border-left:1px solid rgba(23,23,22,.06)}
+.grid i:last-child{border-right:1px solid rgba(23,23,22,.06)}
+
+.preloader{position:fixed;inset:0;z-index:4000;background:var(--paper);display:grid;place-items:center;transition:opacity .9s var(--ease),visibility .9s var(--ease)}
+.preloader.done{opacity:0;visibility:hidden}
+.preword{position:absolute;font-size:clamp(24px,5vw,74px);letter-spacing:-.05em;opacity:0;transform:translateY(14px);transition:.55s var(--ease)}
+.preword.show{opacity:1;transform:none}
+.preword.serif{font-family:var(--serif);font-style:italic;font-size:clamp(58px,11vw,170px)}
+
+header{position:fixed;inset:0 0 auto;height:72px;padding:0 var(--g);z-index:600;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;mix-blend-mode:difference;color:#fff;transition:transform .6s var(--ease)}
+header.hide{transform:translateY(-100%)}
+.logo{font-family:var(--serif);font-style:italic;font-size:25px}
+.nav{display:flex;gap:28px}
+.nav a,.status{font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+.status{text-align:right}
+
+main,footer{position:relative;z-index:2}
+.hero{height:100svh;min-height:700px;padding:110px var(--g) 34px;overflow:hidden;position:relative}
+.hero-inner{height:100%;display:grid;grid-template-rows:auto 1fr auto;position:relative}
+.hero-kicker{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.15em}
+.hero-stage{align-self:center;position:relative;perspective:1200px}
+.hero-display{font-size:clamp(58px,9.8vw,154px);line-height:.82;letter-spacing:-.082em;font-weight:400;text-align:center;transform:rotateX(calc(var(--my)*-2.1deg)) rotateY(calc(var(--mx)*3.2deg));transition:transform .1s linear;will-change:transform}
+.hero-line{display:block;will-change:transform,letter-spacing;transition:transform .14s linear}
+.hero-line.one{transform:translateX(calc(var(--mx)*-18px))}
+.hero-line.two{transform:translateX(calc(var(--mx)*18px))}
+.hero-line.three{transform:translateX(calc(var(--mx)*-8px))}
+.hero-display em{font-family:var(--serif);font-style:italic;font-weight:400;display:inline-block;transform:translateY(calc(var(--my)*-10px)) rotate(calc(var(--mx)*1.7deg));text-shadow:calc(var(--mx)*12px) calc(var(--my)*9px) 24px rgba(23,23,22,.09)}
+.hero-word{display:inline-block;transition:transform .15s linear,letter-spacing .15s linear}
+.hero-word[data-react="1"]{transform:translate(calc(var(--mx)*12px),calc(var(--my)*-6px))}
+.hero-word[data-react="2"]{transform:translate(calc(var(--mx)*-10px),calc(var(--my)*8px))}
+.hero-word[data-react="3"]{transform:translate(calc(var(--mx)*7px),calc(var(--my)*5px))}
+.orbit{position:absolute;font-size:10px;line-height:1.5;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:transform .16s linear}
+.o1{left:1%;top:18%;transform:translate(calc(var(--mx)*-11px),calc(var(--my)*-10px))}
+.o2{right:1%;top:23%;text-align:right;transform:translate(calc(var(--mx)*11px),calc(var(--my)*8px))}
+.o3{left:10%;bottom:9%;transform:translate(calc(var(--mx)*-7px),calc(var(--my)*10px))}
+.o4{right:9%;bottom:7%;text-align:right;transform:translate(calc(var(--mx)*8px),calc(var(--my)*-10px))}
+.hero-bottom{display:grid;grid-template-columns:1fr 2fr 1fr;align-items:end}
+.hero-bottom p{grid-column:2;max-width:650px;justify-self:center;text-align:center;font-size:clamp(14px,1.35vw,18px);line-height:1.5;color:#4f4d49}
+.scroll{justify-self:end;font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
+
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:14px 0;position:relative}
+.marquee-track{display:flex;width:max-content;animation:marquee 34s linear infinite;will-change:transform}
+.marquee-group{display:flex;flex:none}
+.marquee span{font-size:10px;text-transform:uppercase;letter-spacing:.16em;padding-right:42px;white-space:nowrap}
+.marquee b{font-family:var(--serif);font-weight:400;font-style:italic;font-size:16px;margin:0 12px}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
+.section{padding:clamp(120px,16vw,235px) var(--g);position:relative}
+.section-head{display:grid;grid-template-columns:2fr 7fr 3fr;align-items:start;margin-bottom:clamp(72px,10vw,150px);gap:24px}
+.num,.eyebrow,.micro{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}
+.section-title{font-size:clamp(58px,10vw,148px);line-height:.82;letter-spacing:-.075em;font-weight:400}
+.section-title em{font-family:var(--serif);font-style:italic;font-weight:400}
+.micro{line-height:1.55;max-width:290px}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+.services{background:var(--paper-2)}
+.service-stage{min-height:68vh;display:grid;grid-template-columns:3fr 6fr 3fr;gap:24px}
+.service-index{list-style:none;border-top:1px solid var(--line)}
+.service-index button{width:100%;border:0;background:none;padding:18px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.1em;opacity:.42;transition:.45s var(--ease)}
+.service-index button.active,.service-index button:hover{opacity:1;padding-left:12px}
+.service-main{align-self:center;padding:0 2vw}
+.service-word{font-size:clamp(70px,11vw,170px);line-height:.78;letter-spacing:-.08em;transition:.35s var(--ease)}
+.service-word.swap{opacity:0;transform:translateY(16px)}
+.service-word em{font-family:var(--serif);font-style:italic}
+.service-copy{margin-top:42px;max-width:560px;font-size:clamp(17px,1.5vw,22px);line-height:1.45}
+.service-note{align-self:end;font-size:10px;text-transform:uppercase;letter-spacing:.15em;line-height:1.65;color:var(--muted)}
+
+.projects{overflow:hidden}
+.project-card{appearance:none;border:0;background:none;width:100%;display:block;position:relative;margin-top:clamp(80px,10vw,140px);text-align:left}
+.project-head{display:flex;align-items:center;justify-content:space-between;padding:0 0 14px;border-bottom:1px solid var(--line);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.project-head span:last-child{display:inline-flex;gap:10px;align-items:center;transition:transform .45s var(--ease),color .45s var(--ease)}
+.project-card:hover .project-head span:last-child{transform:translateX(7px);color:var(--ink)}
+.project-media{width:100%;aspect-ratio:16/8.6;overflow:hidden;background:#e2dfd8;position:relative;margin-top:18px;border:1px solid rgba(23,23,22,.08)}
+.project-media::after{content:"";position:absolute;inset:0;border:1px solid rgba(23,23,22,.07);pointer-events:none}
+.project-media video,.project-media img{width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.01);transition:transform 1.25s var(--ease),filter .8s var(--ease)}
+.project-card:hover .project-media video,.project-card:hover .project-media img{transform:scale(1.04)}
+.project-mark{position:absolute;left:clamp(18px,2.2vw,28px);bottom:clamp(18px,2.2vw,28px);font-size:clamp(50px,9vw,118px);line-height:.78;letter-spacing:-.08em;color:#fff;mix-blend-mode:screen;text-shadow:0 10px 26px rgba(0,0,0,.18)}
+.project-mark em{font-family:var(--serif);font-style:italic;font-weight:400}
+.project-caption{display:grid;grid-template-columns:5fr 3fr 3fr;gap:clamp(20px,3vw,48px);align-items:start;padding-top:24px}
+.project-title{font-size:clamp(54px,9vw,132px);line-height:.78;letter-spacing:-.075em;font-weight:400}
+.project-title em{font-family:var(--serif);font-style:italic;font-weight:400}
+.project-detail .label{display:block;margin-bottom:10px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.project-detail p{font-size:12px;line-height:1.62;color:#55534e}
+.project-open{margin-top:22px;display:inline-flex;align-items:center;gap:12px;font-size:10px;text-transform:uppercase;letter-spacing:.15em}
+.project-open i{font-style:normal;transition:transform .45s var(--ease)}
+.project-card:hover .project-open i{transform:translate(5px,-5px)}
+
+.duo{background:var(--black);color:var(--paper)}
+.duo .micro,.duo .eyebrow,.duo .num{color:rgba(240,238,233,.56)}
+.duo-title{font-size:clamp(56px,10.4vw,160px);line-height:.8;letter-spacing:-.078em;font-weight:400;margin-bottom:clamp(100px,14vw,180px)}
+.duo-title em{font-family:var(--serif);font-style:italic}
+.people{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,7vw,110px)}
+.person{display:grid;gap:30px;align-content:start}
+.person:nth-child(2){margin-top:13vh}
+.person-photo{position:relative;overflow:hidden;aspect-ratio:4/5;background:#181818;border:1px solid rgba(240,238,233,.08)}
+.person-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(10%);transition:transform 1.1s var(--ease),filter 1.1s var(--ease)}
+.person:hover .person-photo img{transform:scale(1.035);filter:grayscale(0%)}
+.person-meta{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;padding-bottom:20px;border-bottom:1px solid rgba(240,238,233,.12)}
+.person-name{font-size:clamp(32px,4vw,50px);line-height:.88;letter-spacing:-.05em;font-weight:400}
+.person-name em{font-family:var(--serif);font-style:italic;font-weight:400}
+.person-role{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:rgba(240,238,233,.56)}
+.person-bio{font-size:15px;line-height:1.68;color:rgba(240,238,233,.84)}
+.person-bio strong{color:var(--paper)}
+.person-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 28px}
+.person-box{padding-top:18px;border-top:1px solid rgba(240,238,233,.10)}
+.person-box .k{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:rgba(240,238,233,.48);margin-bottom:12px}
+.person-box ul{list-style:none;display:grid;gap:12px}
+.person-box li{font-size:13px;line-height:1.5;color:rgba(240,238,233,.86)}
+.person-box li b{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,238,233,.48);margin-bottom:4px;font-weight:500}
+.person-links{display:flex;gap:16px;flex-wrap:wrap}
+.person-links a{display:inline-flex;align-items:center;gap:10px;font-size:10px;text-transform:uppercase;letter-spacing:.15em;padding:10px 0;border-bottom:1px solid rgba(240,238,233,.14);transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.person-links a:hover{transform:translateY(-2px);opacity:1}
+
+.contact{padding:clamp(120px,18vw,240px) var(--g) clamp(40px,6vw,60px)}
+.contact-wrap{display:grid;grid-template-columns:2fr 6fr 4fr;gap:24px;align-items:end;border-top:1px solid var(--line);padding-top:clamp(42px,6vw,72px)}
+.contact-title{font-size:clamp(54px,10vw,150px);line-height:.8;letter-spacing:-.078em;font-weight:400}
+.contact-title em{font-family:var(--serif);font-style:italic;font-weight:400}
+.contact-email{justify-self:end;font-family:var(--serif);font-style:italic;font-size:clamp(30px,5.5vw,76px);line-height:.9;display:inline-block;position:relative}
+.contact-email::after{content:"";position:absolute;left:0;bottom:-.08em;width:100%;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease)}
+.contact-email:hover::after{transform:scaleX(1)}
+footer{padding:24px var(--g) 34px;display:flex;justify-content:space-between;align-items:center;font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}
+
+.case-overlay{position:fixed;inset:0;z-index:4500;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .6s var(--ease-soft),visibility .6s var(--ease-soft)}
+.case-overlay[data-state="opening"],.case-overlay[data-state="open"],.case-overlay[data-state="closing"]{visibility:visible;pointer-events:auto}
+.case-overlay[data-state="opening"],.case-overlay[data-state="open"]{opacity:1}
+.case-backdrop{position:absolute;inset:0;background:rgba(10,10,10,.20);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.case-panel{position:absolute;inset:0;background:var(--paper);overflow:hidden;clip-path:inset(var(--case-top,45%) var(--case-right,6%) var(--case-bottom,45%) var(--case-left,6%) round 18px);transform:translateY(30px) scale(.985);opacity:0;transition:clip-path .9s var(--ease),transform .9s var(--ease),opacity .9s var(--ease)}
+.case-overlay[data-state="opening"] .case-panel,.case-overlay[data-state="open"] .case-panel{clip-path:inset(0 0 0 0 round 0);transform:none;opacity:1}
+.case-overlay[data-state="closing"] .case-panel{clip-path:inset(var(--case-top,45%) var(--case-right,6%) var(--case-bottom,45%) var(--case-left,6%) round 18px);transform:translateY(18px) scale(.985);opacity:0}
+.case-ui{position:absolute;inset:0;pointer-events:none;z-index:8}
+.case-topbar{position:absolute;left:0;right:0;top:0;padding:20px var(--g);display:flex;justify-content:space-between;align-items:center;mix-blend-mode:difference;color:#fff;pointer-events:none}
+.case-tag{font-size:10px;text-transform:uppercase;letter-spacing:.16em}
+.case-close{pointer-events:auto;display:inline-flex;align-items:center;gap:12px;color:#fff;font-size:10px;text-transform:uppercase;letter-spacing:.16em;padding:14px 0}
+.case-close i{font-style:normal;font-size:16px;line-height:1}
+.case-progress{position:absolute;left:var(--g);right:var(--g);top:72px;height:1px;background:rgba(255,255,255,.12);overflow:hidden}
+.case-progress::after{content:"";position:absolute;left:0;top:0;height:100%;width:calc(var(--case-progress) * 100%);background:#fff;transition:width .18s linear}
+.case-viewport{position:absolute;inset:0;overflow:auto;scroll-behavior:smooth}
+.case-shell{min-height:100%;background:var(--paper)}
+.case-hero{min-height:100svh;background:var(--black);color:var(--paper);padding:120px var(--g) 46px;display:grid;grid-template-columns:7fr 5fr;grid-template-rows:auto 1fr auto;gap:20px 28px;position:relative}
+.case-hero small{grid-column:1 / -1;font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:rgba(240,238,233,.54)}
+.case-hero h2{font-size:clamp(68px,11vw,180px);line-height:.78;letter-spacing:-.09em;font-weight:400;align-self:start}
+.case-hero h2 em{font-family:var(--serif);font-style:italic;font-weight:400}
+.case-brief{grid-column:2;align-self:end;max-width:420px;justify-self:end}
+.case-brief .k{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:rgba(240,238,233,.52);margin-bottom:16px}
+.case-brief p{font-size:clamp(16px,1.5vw,21px);line-height:1.48;color:rgba(240,238,233,.86)}
+.case-section{padding:clamp(76px,9vw,120px) var(--g)}
+.case-section.light{background:var(--paper)}
+.case-section.soft{background:var(--paper-2)}
+.case-kicker{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:34px}
+.case-kicker .l{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}
+.case-kicker h3{font-size:clamp(40px,6vw,84px);line-height:.88;letter-spacing:-.06em;font-weight:400}
+.case-kicker h3 em{font-family:var(--serif);font-style:italic;font-weight:400}
+.case-kicker p{max-width:420px;font-size:14px;line-height:1.65;color:var(--soft)}
+.media-frame{position:relative;border:1px solid var(--line);background:#dedbd3;overflow:hidden}
+.media-frame video,.media-frame img{width:100%;height:100%;object-fit:cover}
+.media-frame.case-hero-media{aspect-ratio:16/9;background:#111}
+.media-frame.case-hero-media video{object-position:center}
+.overlay-play{position:absolute;left:20px;bottom:18px;display:inline-flex;align-items:center;gap:10px;padding:12px 0;color:#fff;font-size:10px;letter-spacing:.16em;text-transform:uppercase;mix-blend-mode:screen}
+.overlay-play b{font-weight:500;font-size:12px}
+.miunae-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.miunae-grid figure{border:1px solid var(--line);background:#e5e1d8;overflow:hidden}
+.miunae-grid .w7{grid-column:span 7;aspect-ratio:16/10}
+.miunae-grid .w5{grid-column:span 5;aspect-ratio:5/6}
+.miunae-grid .w4{grid-column:span 4;aspect-ratio:4/5}
+.miunae-grid img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
+.miunae-grid figure:hover img{transform:scale(1.03)}
+.case-text-grid{display:grid;grid-template-columns:4fr 4fr 4fr;gap:24px}
+.case-text-grid article{padding-top:18px;border-top:1px solid var(--line)}
+.case-text-grid .k{display:block;margin-bottom:12px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.case-text-grid p{font-size:14px;line-height:1.68;color:var(--soft)}
+.quote-band{display:grid;grid-template-columns:5fr 7fr;gap:34px;align-items:start}
+.quote-band blockquote{font-size:clamp(30px,4vw,62px);line-height:.92;letter-spacing:-.05em}
+.quote-band blockquote em{font-family:var(--serif);font-style:italic}
+.quote-band p{font-size:15px;line-height:1.72;color:var(--soft)}
+.live-link{display:inline-flex;align-items:center;gap:14px;padding:12px 0;font-size:11px;text-transform:uppercase;letter-spacing:.16em;border-bottom:1px solid var(--ink)}
+
+.slider-block{position:relative}
+.slider-surface{position:relative;padding:clamp(18px,2vw,26px);background:var(--paper-3);border:1px solid var(--line);overflow:hidden}
+.slider-surface.with-bg::before{content:"";position:absolute;inset:0;background-image:var(--bg);background-size:cover;background-position:center;opacity:.22;transform:scale(1.05)}
+.slider-surface > *{position:relative;z-index:1}
+.slider-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:18px}
+.slider-head .meta{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}
+.slider-head p{max-width:430px;font-size:13px;line-height:1.62;color:var(--soft)}
+.slider-controls{display:flex;gap:10px;align-items:center}
+.slider-btn{width:48px;height:48px;border:1px solid var(--line);display:grid;place-items:center;transition:transform .35s var(--ease),background .35s var(--ease),border-color .35s var(--ease)}
+.slider-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.45);border-color:rgba(23,23,22,.22)}
+.slider-btn b{font-size:16px;line-height:1;font-weight:500}
+.slider-rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(72%,1fr);gap:18px;overflow:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:none}
+.slider-rail::-webkit-scrollbar{display:none}
+.slide-card{scroll-snap-align:start;aspect-ratio:16/9;border:1px solid var(--line);background:#efede7;overflow:hidden;box-shadow:0 18px 40px rgba(23,23,22,.08)}
+.slide-card img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform 1s var(--ease)}
+.slide-card:hover img{transform:scale(1.015)}
+.final-preview{aspect-ratio:16/9;border:1px solid var(--line);overflow:hidden;background:#ece8df}
+.final-preview img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.final-preview:hover img{transform:scale(1.03)}
+
+.case-end{padding:28px var(--g) 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:24px;background:var(--paper)}
+.case-end .l{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}
+.case-end button{display:inline-flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+.case-end button i{font-style:normal;font-size:14px}
+
+@media(max-width:980px){
+  .section-head,.project-caption,.contact-wrap,.case-text-grid,.quote-band,.people,.case-hero{grid-template-columns:1fr}
+  .project-mark{font-size:clamp(40px,13vw,100px)}
+  .case-brief{grid-column:auto;justify-self:start;max-width:unset}
+  .hero-bottom{grid-template-columns:1fr}
+  .hero-bottom p,.scroll{grid-column:auto;justify-self:start;text-align:left}
+  .service-stage{grid-template-columns:1fr}
+  .service-main{padding:22px 0}
+  .person:nth-child(2){margin-top:0}
+  .person-grid{grid-template-columns:1fr}
+  .miunae-grid figure,.miunae-grid .w7,.miunae-grid .w5,.miunae-grid .w4{grid-column:1 / -1}
+  .slider-rail{grid-auto-columns:minmax(88%,1fr)}
+}
+@media(max-width:760px){
+  header{grid-template-columns:1fr auto}
+  .nav,.status{display:none}
+  .hero{min-height:760px}
+  .hero-kicker{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .hero-display{font-size:clamp(50px,14vw,96px)}
+  .orbit{display:none}
+  .marquee span{padding-right:28px}
+  .section,.case-section{padding-left:18px;padding-right:18px}
+  .case-topbar{padding-left:18px;padding-right:18px}
+  .case-progress{left:18px;right:18px}
+  .contact-email{justify-self:start}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .reveal{opacity:1;transform:none}
+}
 </style>
-</head><body id="top">
-<div id="grain"></div><div id="cursor"></div><div class="cursor-label" id="cursorLabel"></div><div class="grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-<div class="preloader" id="preloader"><div class="preword">FORM</div><div class="preword">LANGUAGE</div><div class="preword serif">ENNUI</div></div>
-<header id="header"><a class="logo" href="#top">ENNUI</a><nav class="nav"><a href="#services">Services</a><a href="#work">Work</a><a href="#duo">Marian & Linda</a><a href="#contact">Contact</a></nav><div class="status">Independent creative studio</div></header>
-<main>
-<section class="hero">
-<div class="hero-inner"><div class="hero-kicker"><span>Design / Language / Direction</span><span>Two people. One point of view.</span></div>
-<div class="hero-stage"><h1 class="hero-display"><span class="hero-line one">Design with</span><span class="hero-line two">something to <em>say.</em></span></h1><div class="orbit o1">Marian Fusek<br>Design & direction</div><div class="orbit o2">Linda Krestanova<br>Words & strategy</div><div class="orbit o3">Seasoned minds<br>restless work</div><div class="orbit o4">No handoff between<br>idea and execution</div></div>
-<div class="hero-bottom"><span></span><p>ENNUI is a creative duo for brands that need the way they look and the way they speak to come from the same place.</p><div class="scroll">Move / Scroll</div></div></div>
-</section>
-<div class="marquee"><div class="marquee-track" id="marqueeTrack"><div class="marquee-group"><span>BRAND IDENTITY <b>×</b> COPYWRITING <b>×</b> CREATIVE DIRECTION <b>×</b> DIGITAL DESIGN <b>×</b> NAMING <b>×</b> BRAND SYSTEMS <b>×</b></span><span>BRAND IDENTITY <b>×</b> COPYWRITING <b>×</b> CREATIVE DIRECTION <b>×</b> DIGITAL DESIGN <b>×</b> NAMING <b>×</b> BRAND SYSTEMS <b>×</b></span></div><div class="marquee-group" aria-hidden="true"><span>BRAND IDENTITY <b>×</b> COPYWRITING <b>×</b> CREATIVE DIRECTION <b>×</b> DIGITAL DESIGN <b>×</b> NAMING <b>×</b> BRAND SYSTEMS <b>×</b></span><span>BRAND IDENTITY <b>×</b> COPYWRITING <b>×</b> CREATIVE DIRECTION <b>×</b> DIGITAL DESIGN <b>×</b> NAMING <b>×</b> BRAND SYSTEMS <b>×</b></span></div></div></div>
-<section class="section services" id="services"><div class="section-head reveal"><div class="num">01</div><div><div class="eyebrow">What we do</div><h2 class="section-title">One idea.<br><em>Everywhere.</em></h2></div><p class="micro">We find the part nobody else can honestly claim, then make it visible, verbal and impossible to dilute.</p></div><div class="service-stage reveal"><ul class="service-index" id="serviceIndex"><li><button class="active" data-word="Identity" data-copy="The visual system, from first mark to final detail — built around one idea strong enough to hold everything together."><span>01 Identity</span><span>↗</span></button></li><li><button data-word="Language" data-copy="Positioning, naming, voice and copy that sound like the brand — not like the category it happens to be in."><span>02 Language</span><span>↗</span></button></li><li><button data-word="Direction" data-copy="A point of view carried through campaigns, photography, moving image and every place the brand appears."><span>03 Direction</span><span>↗</span></button></li><li><button data-word="Digital" data-copy="Websites and interfaces where content, motion and design work as one system — never decoration added later."><span>04 Digital</span><span>↗</span></button></li><li><button data-word="Systems" data-copy="Flexible enough to grow. Specific enough to stay recognizable. Clear enough that other people can use them well."><span>05 Systems</span><span>↗</span></button></li></ul><div class="service-main"><div class="service-word" id="serviceWord"><em>Identity</em></div><p class="service-copy" id="serviceCopy">The visual system, from first mark to final detail — built around one idea strong enough to hold everything together.</p></div><div class="service-note">No relay race.<br>No lost translation.<br>No weakened idea<br>between departments.</div></div></section>
-<section class="section projects" id="work"><div class="section-head reveal"><div class="num">02</div><div><div class="eyebrow">Selected work</div><h2 class="section-title">A complete<br><em>world.</em></h2></div><p class="micro">Strategy, identity, language, packaging, imagery and digital — held together by one point of view.</p></div><button class="project-card reveal" id="miunaeTrigger" type="button" aria-haspopup="dialog" aria-controls="miunaeCase" data-hover="ENTER"><div class="project-head"><span>01 / MIUNĀE</span><span>Open case study <b>↗</b></span></div><div class="project-media"><img src="https://images.squarespace-cdn.com/content/v1/696368580e396c71a58270ff/77fbd142-ecdf-42fc-9b05-d098da478425/Trio-Split.jpg?format=2500w" alt="MIUNĀE product and identity system" onerror="this.style.display='none'" loading="eager"></div><div class="project-caption"><div><h3 class="project-title">MIUNĀE<em>.</em></h3><span class="project-open">Enter the full case <i>↗</i></span></div><div class="project-detail"><span class="label">Scope</span><p>Brand strategy / identity / packaging / creative direction / copy / digital / launch</p></div><div class="project-detail"><span class="label">Core idea</span><p>Time shaped the mark, language, materials, motion and every interaction.</p></div></div></button></section>
-<section class="section duo" id="duo"><div class="section-head reveal"><div class="num">03</div><div><div class="eyebrow">The people</div></div><p class="micro">Similar mileage. Different instincts. Equal say in where the work goes.</p></div><h2 class="duo-title reveal">Different instincts.<br>The same intolerance<br>for work that <em>almost works.</em></h2><div class="people">
-<article class="person reveal"><div class="portrait" data-hover="MARIAN"><img src="https://www.marianfusek.com/5am/images/marian-fusek.jpg" alt="Marian Fusek"></div><h3 class="person-name">Marian Fusek</h3><div class="role">Design / Creative Direction / Leadership</div><p class="bio">Twenty years into design, Marian still starts with the same question: what is the one thing this brand can own? He turns the answer into identities, interfaces and systems — then holds the creative standard until every part feels like it came from the same mind.</p><div class="milestones"><div class="milestone"><time>2022—NOW</time><span>Independent — Brand, UI, AI &amp; Visual Designer · Creative Director. CCO / Creative at MIUNĀE.</span></div><div class="milestone"><time>2020—NOW</time><span>Coach — Mindset coach for digital creatives.</span></div><div class="milestone"><time>2015—2022</time><span>STRV — Chief Design &amp; Engineering Officer · Design Team Lead · Product Designer.</span></div><div class="milestone"><time>2011—2015</time><span>SYMBIO Digital — Graphic Designer.</span></div><div class="milestone"><time>2009—2010</time><span>FG Forrest — Graphic Designer.</span></div></div><div class="person-links"><a href="https://www.marianfusek.com" target="_blank" rel="noopener" data-hover="OPEN">Portfolio</a><a href="mailto:hello@ennui.am" data-hover="WRITE">Email</a></div></article>
-<article class="person reveal"><div class="portrait" data-hover="LINDA"><img src="https://www.marianfusek.com/5am/images/linda-krestanova.jpg" alt="Linda Krestanova"></div><h3 class="person-name">Linda Krestanova</h3><div class="role">Copywriting / Brand Strategy / Content</div><p class="bio">Linda finds the sentence that makes the whole thing make sense — then builds the language around it. Positioning, naming, voice and long-form copy become one coherent personality: precise enough to be unmistakable, direct enough to stand its ground and human enough to stay with you.</p><div class="milestones"><div class="milestone"><time>SEP 2025—NOW</time><span>Words — independent copywriting, brand voice and content.</span></div><div class="milestone"><time>MAY 2024—SEP 2025</time><span>AIMS — Head of Content.</span></div><div class="milestone"><time>JUL 2023—APR 2024</time><span>STRV — Communications Manager.</span></div><div class="milestone"><time>FEB 2019—JUL 2023</time><span>STRV — Senior Copywriter.</span></div><div class="milestone"><time>2013—2019</time><span>OutdoorVisit, CTP Invest, Brooklyn News Service and MAXIM — content, copy, reporting and editorial.</span></div></div><div class="person-links"><a href="https://www.linkedin.com/in/linda-krestanova" target="_blank" rel="noopener" data-hover="OPEN">LinkedIn</a><a href="mailto:hello@ennui.am" data-hover="WRITE">Email</a></div></article>
-</div></section>
-<section class="manifesto"><p class="reveal">The way it looks<br>and the way it <em>talks</em><br>should never meet<br>for the first time<br>at the end.</p><div class="micro">Our philosophy<br>in one sentence</div><div class="micro right">Design × language<br>from the first thought</div></section>
-<section class="contact" id="contact"><div class="contact-top"><div class="micro">04 / Contact</div><div class="micro">Available selectively<br>for new projects</div></div><a class="contact-email reveal" href="mailto:hello@ennui.am" data-hover="WRITE">hello@<em>ennui</em>.am</a><div class="contact-bottom"><div class="micro">ENNUI — Independent creative studio</div><a class="micro" href="#top" data-hover="TOP">Back to top ↑</a></div></section>
+</head>
+<body>
+<div id="grain"></div>
+<div id="cursor"></div>
+<div class="cursor-label" id="cursorLabel"></div>
+<div class="grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preword">design with a point of view</div>
+  <div class="preword">language with a backbone</div>
+  <div class="preword serif">ENNUI</div>
+</div>
+
+<header id="header">
+  <a class="logo" href="#top" data-hover="TOP">ENNUI</a>
+  <nav class="nav">
+    <a href="#services" data-hover="GO">Services</a>
+    <a href="#work" data-hover="GO">Projects</a>
+    <a href="#about" data-hover="GO">About</a>
+    <a href="#contact" data-hover="GO">Contact</a>
+  </nav>
+  <div class="status">Design / Copy / Direction</div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-kicker">
+        <span>Marian Fusek / Design</span>
+        <span>Linda Krestanova / Copy</span>
+      </div>
+      <div class="hero-stage">
+        <div class="orbit o1">identity systems<br>and digital worlds</div>
+        <div class="orbit o2">brand language<br>that knows what it means</div>
+        <div class="orbit o3">one shared point<br>of view</div>
+        <div class="orbit o4">calm, modern,<br>hyper considered</div>
+        <h1 class="hero-display reveal" data-reveal>
+          <span class="hero-line one"><span class="hero-word" data-react="1">Seasoned</span> <em>design</em></span>
+          <span class="hero-line two">meets <span class="hero-word" data-react="2">sharp</span> language</span>
+          <span class="hero-line three">in <span class="hero-word" data-react="3">one</span> studio.</span>
+        </h1>
+      </div>
+      <div class="hero-bottom">
+        <p class="reveal" data-reveal>ENNUI brings design, copywriting and creative direction into one system — so the way a brand looks and the way it speaks never arrive as separate decisions.</p>
+        <span class="scroll">Scroll ↓</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marqueeTrack">
+      <div class="marquee-group">
+        <span>Digital Design</span><b>×</b>
+        <span>Naming</span><b>×</b>
+        <span>Brand Systems</span><b>×</b>
+        <span>Brand Identity</span><b>×</b>
+        <span>Copywriting</span><b>×</b>
+        <span>Creative Direction</span><b>×</b>
+        <span>Digital Design</span><b>×</b>
+        <span>Naming</span><b>×</b>
+        <span>Brand Systems</span><b>×</b>
+      </div>
+      <div class="marquee-group" aria-hidden="true">
+        <span>Digital Design</span><b>×</b>
+        <span>Naming</span><b>×</b>
+        <span>Brand Systems</span><b>×</b>
+        <span>Brand Identity</span><b>×</b>
+        <span>Copywriting</span><b>×</b>
+        <span>Creative Direction</span><b>×</b>
+        <span>Digital Design</span><b>×</b>
+        <span>Naming</span><b>×</b>
+        <span>Brand Systems</span><b>×</b>
+      </div>
+    </div>
+  </div>
+
+  <section class="section services" id="services">
+    <div class="section-head reveal" data-reveal>
+      <div class="num">01</div>
+      <div>
+        <div class="eyebrow">What we do</div>
+        <h2 class="section-title">One idea,<br><em>fully built.</em></h2>
+      </div>
+      <p class="micro">We work where identity, interface and language need to feel authored together — not stitched back together after the fact.</p>
+    </div>
+    <div class="service-stage reveal" data-reveal>
+      <ul class="service-index" id="serviceIndex">
+        <li><button type="button" class="active" data-word="Identity" data-copy="Marks, systems and visual worlds built to hold up in the real world — not just in a deck."><span>01</span><span>Brand Identity</span></button></li>
+        <li><button type="button" data-word="Language" data-copy="Voice, messaging and copy that give a brand shape from the inside out."><span>02</span><span>Copywriting</span></button></li>
+        <li><button type="button" data-word="Direction" data-copy="Creative direction that keeps image, motion, digital and campaigns speaking the same language."><span>03</span><span>Creative Direction</span></button></li>
+        <li><button type="button" data-word="Digital" data-copy="Web and product experiences that feel minimal because they are precise, not because they are empty."><span>04</span><span>Digital Design</span></button></li>
+        <li><button type="button" data-word="Naming" data-copy="Names and brand narratives decided at the same table as the design, so the whole thing lands as one thought."><span>05</span><span>Naming & Messaging</span></button></li>
+      </ul>
+      <div class="service-main">
+        <div class="service-word" id="serviceWord"><em>Identity</em></div>
+        <p class="service-copy" id="serviceCopy">Marks, systems and visual worlds built to hold up in the real world — not just in a deck.</p>
+      </div>
+      <div class="service-note">No silos. No generic polish. Just the work, tightened until the pieces stop competing and start behaving like one point of view.</div>
+    </div>
+  </section>
+
+  <section class="section projects" id="work">
+    <div class="section-head reveal" data-reveal>
+      <div class="num">02</div>
+      <div>
+        <div class="eyebrow">Selected work</div>
+        <h2 class="section-title">A complete<br><em>world.</em></h2>
+      </div>
+      <p class="micro">Strategy, identity, language, packaging, imagery and digital — held together by one point of view.</p>
+    </div>
+
+    <button class="project-card reveal" type="button" id="miunaeTrigger" data-case-open="miunae" aria-haspopup="dialog" aria-controls="miunaeCase" data-hover="ENTER">
+      <div class="project-head"><span>01 / MIUNĀE</span><span>Open case study <b>↗</b></span></div>
+      <div class="project-media">
+        <video autoplay muted loop playsinline preload="metadata" poster="https://www.marianfusek.com/media/projects/miunae/images/04-miunae-all.jpg">
+          <source src="https://www.marianfusek.com/media/projects/miunae/video/Miunae-bgr-vid.mp4" type="video/mp4">
+        </video>
+        <div class="project-mark">MIUNĀE<em>.</em></div>
+      </div>
+      <div class="project-caption">
+        <div><h3 class="project-title">MIUNĀE<em>.</em></h3><span class="project-open">Enter the full case <i>↗</i></span></div>
+        <div class="project-detail"><span class="label">Scope</span><p>Brand strategy / identity / packaging / creative direction / copy / digital / launch</p></div>
+        <div class="project-detail"><span class="label">Core idea</span><p>Time shaped the mark, language, materials, motion and every interaction.</p></div>
+      </div>
+    </button>
+
+    <button class="project-card reveal" type="button" id="aimsTrigger" data-case-open="aims" aria-haspopup="dialog" aria-controls="aimsCase" data-hover="ENTER">
+      <div class="project-head"><span>02 / AIMS</span><span>Open case study <b>↗</b></span></div>
+      <div class="project-media">
+        <video autoplay muted loop playsinline preload="metadata" poster="https://www.marianfusek.com/media/projects/aims/images/slide-02/00-aims-bgr.jpg">
+          <source src="https://www.marianfusek.com/media/projects/aims/video/01-aims-logo.mp4" type="video/mp4">
+        </video>
+        <div class="project-mark">AIMS<em>.</em></div>
+      </div>
+      <div class="project-caption">
+        <div><h3 class="project-title">AIMS<em>.</em></h3><span class="project-open">Enter the full case <i>↗</i></span></div>
+        <div class="project-detail"><span class="label">Scope</span><p>Website / brand refresh / sales deck / digital assets / rollout thinking</p></div>
+        <div class="project-detail"><span class="label">Core idea</span><p>Make a technically serious offer feel lighter, clearer and easier to trust without sanding off its edge.</p></div>
+      </div>
+    </button>
+  </section>
+
+  <section class="section duo" id="about">
+    <div class="section-head reveal" data-reveal>
+      <div class="num">03</div>
+      <div>
+        <div class="eyebrow">About</div>
+        <h2 class="duo-title">Marian <em>&</em> Linda</h2>
+      </div>
+      <p class="micro">Different disciplines, similar standards. The same intolerance for work that almost works.</p>
+    </div>
+
+    <div class="people">
+      <article class="person reveal" data-reveal>
+        <div class="person-photo"><img src="https://www.marianfusek.com/5am/images/marian-fusek.jpg" alt="Marian Fusek" loading="lazy"></div>
+        <div class="person-meta">
+          <div>
+            <h3 class="person-name">Marian Fusek</h3>
+            <div class="person-role">Design / Creative Direction</div>
+          </div>
+        </div>
+        <p class="person-bio">Twenty years into design, and still the first one up. Marian's built brand systems and interfaces for companies of every size — from <strong>leading design and engineering at STRV</strong> to running things his own way today, as <strong>Creative Director for MIUNĀE</strong>. He finds the one true thing about a brand, then builds everything else from it.</p>
+        <div class="person-grid">
+          <div class="person-box">
+            <span class="k">Milestones</span>
+            <ul>
+              <li><b>20+ years</b>Design, branding and digital product work</li>
+              <li><b>STRV</b>Design and engineering leadership</li>
+              <li><b>MIUNĀE</b>Creative direction across identity, imagery and digital</li>
+              <li><b>Today</b>Independent creative direction, brand systems and AI-forward production</li>
+            </ul>
+          </div>
+          <div class="person-box">
+            <span class="k">Links</span>
+            <div class="person-links">
+              <a href="https://www.marianfusek.com" target="_blank" rel="noopener" data-hover="OPEN">Website ↗</a>
+              <a href="mailto:hello@ennui.am" data-hover="MAIL">Email ↗</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="person reveal" data-reveal>
+        <div class="person-photo"><img src="https://www.marianfusek.com/5am/images/linda-krestanova.jpg" alt="Linda Krestanova" loading="lazy"></div>
+        <div class="person-meta">
+          <div>
+            <h3 class="person-name">Linda Krestanova</h3>
+            <div class="person-role">Copy / Brand Strategy</div>
+          </div>
+        </div>
+        <p class="person-bio">Linda writes the sentence that makes a brand make sense — tone, message, the words underneath the words. She works language the way Marian works a grid: precise, considered, nothing left in that isn't earned. Together, the way a brand looks and the way it talks stop being two different jobs.</p>
+        <div class="person-grid">
+          <div class="person-box">
+            <span class="k">Milestones</span>
+            <ul>
+              <li><b>Senior copywriter</b>Brand voice, messaging and narrative systems</li>
+              <li><b>STRV</b>Product and brand writing in fast-moving digital environments</li>
+              <li><b>AIMS</b>Messaging, content structure and digital storytelling</li>
+              <li><b>MIUNĀE</b>Brand story, positioning, copy and launch language</li>
+            </ul>
+          </div>
+          <div class="person-box">
+            <span class="k">Links</span>
+            <div class="person-links">
+              <a href="https://www.linkedin.com/in/linda-krestanova" target="_blank" rel="noopener" data-hover="OPEN">LinkedIn ↗</a>
+              <a href="mailto:hello@ennui.am" data-hover="MAIL">Email ↗</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact-wrap reveal" data-reveal>
+      <div class="eyebrow">04 / Contact</div>
+      <div>
+        <h2 class="contact-title">If it needs a voice,<br><em>a system</em> or both.</h2>
+      </div>
+      <a class="contact-email" href="mailto:hello@ennui.am" data-hover="MAIL">hello@ennui.am</a>
+    </div>
+  </section>
 </main>
 
-<div class="case-overlay" id="miunaeCase" role="dialog" aria-modal="true" aria-labelledby="miunaeCaseTitle" aria-hidden="true" data-state="closed">
-  <div class="case-viewport" id="miunaeViewport" tabindex="-1">
-    <div class="case-toolbar" aria-label="Case study controls">
-      <span class="case-count">Case study / 01</span>
-      <button class="case-close" type="button" data-case-close data-hover="CLOSE" aria-label="Close MIUNĀE case study"></button>
-      <a class="case-live" href="https://www.miunae.com" target="_blank" rel="noopener" data-hover="VISIT">Visit live site</a>
+<footer>
+  <span>ENNUI / Design & Language</span>
+  <a href="#top" data-hover="TOP">Back to top ↑</a>
+</footer>
+
+<!-- MIUNAE -->
+<div class="case-overlay" id="miunaeCase" role="dialog" aria-modal="true" aria-labelledby="miunaeTitle" aria-hidden="true" data-state="closed" data-case="miunae">
+  <div class="case-backdrop"></div>
+  <div class="case-panel">
+    <div class="case-ui">
+      <div class="case-topbar">
+        <span class="case-tag">ENNUI / Case Study</span>
+        <button class="case-close" type="button" data-case-close data-hover="CLOSE"><i>×</i> Close</button>
+      </div>
+      <div class="case-progress"></div>
     </div>
-    <div class="case-progress" aria-hidden="true"><span></span></div>
-    <article class="case-content">
-      <section class="cs-hero">
-        <div class="cs-hero-aura"></div><img class="cs-hero-image" src="https://images.squarespace-cdn.com/content/v1/696368580e396c71a58270ff/77fbd142-ecdf-42fc-9b05-d098da478425/Trio-Split.jpg?format=2500w" alt="MIUNĀE product and identity system" onerror="this.style.display='none'">
-        <div class="cs-hero-top"><span>Case study / 01</span><span>Brand / Language / Packaging / Digital</span></div>
-        <h2 id="miunaeCaseTitle">MIUNĀE</h2>
-        <div class="cs-hero-bottom"><span>Eastern European beauty — made in Romania</span><span>Scroll to enter</span></div>
-      </section>
-      <section class="cs-intro">
-        <div class="cs-label">The brief</div>
-        <h3>Build a beauty brand<br>with <em>nothing borrowed.</em></h3>
-        <p>MIUNĀE began with Romanian heritage, a grandmother’s remedies and a refusal to accept diluted skincare. Our job was to turn that truth into a complete brand — from strategy and name to bottles, words, movement and launch.</p>
-      </section>
-      <section class="cs-statement">
-        <div class="cs-label">The organizing idea</div>
-        <p>Nature has its own clock.<br>We built the brand<br>around <em>time.</em></p>
-      </section>
-      <section class="cs-gallery" aria-label="MIUNĀE project gallery"><figure class="cs-shot a image-backed" data-hover="VIEW"><img src="https://images.squarespace-cdn.com/content/v1/696368580e396c71a58270ff/77fbd142-ecdf-42fc-9b05-d098da478425/Trio-Split.jpg?format=2500w" alt="MIUNĀE product family and packaging" loading="eager" onerror="this.style.display='none'"></figure><figure class="cs-shot b image-backed" data-hover="VIEW"><img src="https://images.squarespace-cdn.com/content/v1/696368580e396c71a58270ff/36e2d8b8-9fc7-427e-808c-afd4362b62d9/_Hourglass.png?format=2500w" alt="MIUNĀE hourglass identity symbol" loading="lazy" onerror="this.style.display='none'"><span class="cs-shot-caption">TIME GIVEN · TIME HONORED · TIME REFINED</span></figure><figure class="cs-shot c image-backed" data-hover="VIEW"><img src="https://images.squarespace-cdn.com/content/v1/696368580e396c71a58270ff/e72ed95d-0b27-47b0-afec-ac1e141843e9/Desirae-Dark-90Light.jpg?format=2500w" alt="MIUNĀE editorial campaign portrait" loading="lazy" onerror="this.style.display='none'"></figure><figure class="cs-shot d cs-type-panel"><span class="cs-overgrown">OVERGROWN</span><p>Clean architecture.<br>Living material.<br>Nothing softened.</p></figure></section>
-      <section class="cs-system">
-        <div class="cs-system-head"><div class="cs-label">The system</div><h3>One truth.<br><em>Many forms.</em></h3><p>The work needed range without losing its center. Every decision came back to time, potency, tactility and the confidence of Eastern European beauty.</p></div>
-        <div class="cs-system-grid">
-          <article class="cs-system-item"><h4>Identity</h4><p>An hourglass lives inside the wordmark — not as decoration, but as the core idea made visible. The system balances restraint with something raw underneath.</p></article>
-          <article class="cs-system-item"><h4>Packaging</h4><p>Frosted glass, deep botanical color and exacting typography make the products feel collected rather than manufactured. Precious, but never precious about themselves.</p></article>
-          <article class="cs-system-item"><h4>Language</h4><p>Direct, intelligent and emotionally specific. No soft-focus beauty filler. The voice says what it means, knows its standards and leaves the audience room to decide.</p></article>
-          <article class="cs-system-item"><h4>Imagery</h4><p>Clean architecture meets overgrown nature. Hard light, true color, soil, petals and living material push against polished surfaces.</p></article>
-          <article class="cs-system-item"><h4>Digital</h4><p>The website behaves like the brand speaks: confident, tactile and layered. Education is not hidden beneath marketing — it becomes part of the experience.</p></article>
-          <article class="cs-system-item"><h4>Launch</h4><p>Every touchpoint arrived from one shared point of view: social, films, product pages, print, education and the systems needed to keep the brand coherent.</p></article>
+    <div class="case-viewport">
+      <article class="case-shell">
+        <section class="case-hero">
+          <small>01 / MIUNĀE</small>
+          <h2 id="miunaeTitle">MIUNĀE</h2>
+          <div class="case-brief">
+            <span class="k">The brief</span>
+            <p>Build a skincare brand from zero — identity, language, packaging direction, art direction and digital — without falling into beauty cliché. The answer was a world shaped by time, potency and Eastern European directness.</p>
+          </div>
+        </section>
+
+        <section class="case-section light">
+          <div class="case-kicker">
+            <div>
+              <div class="l">Opening frame</div>
+              <h3>The world in<br><em>motion.</em></h3>
+            </div>
+            <p>The first frame needed to carry the whole proposition: elegant, tactile, alive and slightly feral underneath the polish.</p>
+          </div>
+          <div class="media-frame case-hero-media">
+            <video autoplay muted loop playsinline controls preload="metadata" poster="https://www.marianfusek.com/media/projects/miunae/images/04-miunae-all.jpg">
+              <source src="https://www.marianfusek.com/media/projects/miunae/video/Miunae-bgr-vid.mp4" type="video/mp4">
+            </video>
+            <div class="overlay-play"><b>01</b> Motion / brand atmosphere</div>
+          </div>
+        </section>
+
+        <section class="case-section soft">
+          <div class="case-kicker">
+            <div>
+              <div class="l">Selected visuals</div>
+              <h3>Identity, web,<br><em>social</em> and system.</h3>
+            </div>
+            <p>Five frames that show how the same idea stretches across touchpoints without losing its center.</p>
+          </div>
+          <div class="miunae-grid">
+            <figure class="w7"><img src="https://www.marianfusek.com/media/projects/miunae/images/01-miunae-logo.jpg" alt="MIUNĀE logo study" loading="lazy"></figure>
+            <figure class="w5"><img src="https://www.marianfusek.com/media/projects/miunae/images/02-miunae-web.jpg" alt="MIUNĀE website" loading="lazy"></figure>
+            <figure class="w4"><img src="https://www.marianfusek.com/media/projects/miunae/images/03-miunae-insta.jpg" alt="MIUNĀE Instagram" loading="lazy"></figure>
+            <figure class="w4"><img src="https://www.marianfusek.com/media/projects/miunae/images/04-miunae-all.jpg" alt="MIUNĀE brand world" loading="lazy"></figure>
+            <figure class="w4"><img src="https://www.marianfusek.com/media/projects/miunae/images/05-miunae-brandkit.jpg" alt="MIUNĀE brand kit" loading="lazy"></figure>
+          </div>
+        </section>
+
+        <section class="case-section light">
+          <div class="case-kicker">
+            <div>
+              <div class="l">How it held together</div>
+              <h3>One truth.<br><em>Many forms.</em></h3>
+            </div>
+            <p>Every decision came back to time, tactility, standards and the confidence of a brand that does not need to oversell itself.</p>
+          </div>
+          <div class="case-text-grid">
+            <article><span class="k">Identity</span><p>The hourglass lives inside the wordmark — not as decoration, but as the core idea made visible.</p></article>
+            <article><span class="k">Packaging</span><p>Frosted glass, deep botanical color and exact typography make the products feel collected rather than manufactured.</p></article>
+            <article><span class="k">Language</span><p>Direct, intelligent and emotionally specific. No generic skincare softness, no filler, no fog.</p></article>
+          </div>
+        </section>
+
+        <section class="case-section soft">
+          <div class="quote-band">
+            <blockquote>Words with<br><em>a spine.</em></blockquote>
+            <p>Linda built a voice that carries Nadine’s energy without turning it into theater: blunt where beauty copy is usually vague, sensory without becoming ornamental and informed without sounding clinical. Marian built the visual world to hold the same tension — elegant, exact and alive. Together, the work became coherent because the standards were shared from the start.</p>
+          </div>
+        </section>
+
+        <section class="case-section light">
+          <div class="case-kicker">
+            <div>
+              <div class="l">Live</div>
+              <h3>A brand that looks<br>how it <em>feels.</em></h3>
+            </div>
+            <p>From packaging to digital to launch materials, the world feels authored all the way through.</p>
+          </div>
+          <a class="live-link" href="https://www.miunae.com" target="_blank" rel="noopener" data-hover="VISIT">Visit MIUNĀE ↗</a>
+        </section>
+
+        <div class="case-end">
+          <span class="l">End of case study / MIUNĀE</span>
+          <button type="button" data-case-close data-hover="CLOSE">Return to ENNUI <i>×</i></button>
         </div>
-      </section>
-      <section class="cs-voice"><div class="cs-voice-grid"><h3>Words with<br><em>a spine.</em></h3><div class="cs-voice-copy"><blockquote>“You’re gonna wanna feel this.”</blockquote><p>Linda built a voice that carries Nadine’s energy without turning it into theater: blunt where beauty copy is usually vague, sensory without becoming ornamental and informed without sounding clinical. Marian built the visual world to hold the same tension — elegant, exact and slightly feral.</p></div></div></section>
-      <section class="cs-live"><div><div class="cs-label">The result</div><h3>A brand that<br>looks how it <em>feels.</em></h3><a class="cs-live-link" href="https://www.miunae.com" target="_blank" rel="noopener" data-hover="VISIT">Experience MIUNĀE live</a></div></section>
-      <section class="cs-credits">
-        <div><div class="cs-label">Creative</div><h4>Marian Fusek</h4><p>Brand identity, packaging direction, creative direction, digital design, motion and AI production.</p><a class="cs-credit-link" href="https://www.marianfusek.com" target="_blank" rel="noopener" data-hover="OPEN">Portfolio ↗</a></div>
-        <div><div class="cs-label">Brand & language</div><h4>Linda Krestanova</h4><p>Brand strategy, positioning, personality, naming direction, voice, copy and content systems.</p><a class="cs-credit-link" href="https://www.linkedin.com/in/linda-krestanova" target="_blank" rel="noopener" data-hover="OPEN">LinkedIn ↗</a></div>
-      </section>
-      <footer class="cs-exit"><span class="cs-label">End of case study / MIUNĀE</span><button type="button" data-case-close data-hover="CLOSE">Return to ENNUI</button></footer>
-    </article>
+      </article>
+    </div>
+  </div>
+</div>
+
+<!-- AIMS -->
+<div class="case-overlay" id="aimsCase" role="dialog" aria-modal="true" aria-labelledby="aimsTitle" aria-hidden="true" data-state="closed" data-case="aims">
+  <div class="case-backdrop"></div>
+  <div class="case-panel">
+    <div class="case-ui">
+      <div class="case-topbar">
+        <span class="case-tag">ENNUI / Case Study</span>
+        <button class="case-close" type="button" data-case-close data-hover="CLOSE"><i>×</i> Close</button>
+      </div>
+      <div class="case-progress"></div>
+    </div>
+    <div class="case-viewport">
+      <article class="case-shell">
+        <section class="case-hero">
+          <small>02 / AIMS</small>
+          <h2 id="aimsTitle">AIMS</h2>
+          <div class="case-brief">
+            <span class="k">The brief</span>
+            <p>Create a digital presence and supporting materials that make a technically serious offer feel clear, credible and commercially ready — lighter in feel, sharper in structure and easier to move through.</p>
+          </div>
+        </section>
+
+        <section class="case-section light">
+          <div class="case-kicker">
+            <div>
+              <div class="l">Opening frame</div>
+              <h3>Clarity in<br><em>motion.</em></h3>
+            </div>
+            <p>The hero needed to introduce the brand immediately, set the tone and make the product feel polished before a single paragraph was read.</p>
+          </div>
+          <div class="media-frame case-hero-media">
+            <video autoplay muted loop playsinline controls preload="metadata" poster="https://www.marianfusek.com/media/projects/aims/images/slide-02/00-aims-bgr.jpg">
+              <source src="https://www.marianfusek.com/media/projects/aims/video/01-aims-logo.mp4" type="video/mp4">
+            </video>
+            <div class="overlay-play"><b>01</b> Motion / homepage lead-in</div>
+          </div>
+        </section>
+
+        <section class="case-section soft slider-block">
+          <div class="case-kicker">
+            <div>
+              <div class="l">Slide deck / set 01</div>
+              <h3>Long-form screens,<br><em>framed cleanly.</em></h3>
+            </div>
+            <p>The page concepts are shown as panoramic slides over a shared background, cropped horizontally so the set reads lighter and more editorial.</p>
+          </div>
+          <div class="slider-surface with-bg" style="--bg:url('https://www.marianfusek.com/media/projects/aims/images/slide-02/00-aims-bgr.jpg')">
+            <div class="slider-head">
+              <div class="meta">AIMS / slide-02</div>
+              <div class="slider-controls">
+                <button class="slider-btn" type="button" data-slider-prev data-hover="PREV"><b>←</b></button>
+                <button class="slider-btn" type="button" data-slider-next data-hover="NEXT"><b>→</b></button>
+              </div>
+            </div>
+            <div class="slider-rail" data-slider>
+              <figure class="slide-card"><img src="https://www.marianfusek.com/media/projects/aims/images/slide-02/01-hp.jpg" alt="AIMS homepage concept" loading="lazy"></figure>
+              <figure class="slide-card"><img src="https://www.marianfusek.com/media/projects/aims/images/slide-02/02-products.jpg" alt="AIMS products concept" loading="lazy"></figure>
+              <figure class="slide-card"><img src="https://www.marianfusek.com/media/projects/aims/images/slide-02/03-usecases.jpg" alt="AIMS use cases concept" loading="lazy"></figure>
+              <figure class="slide-card"><img src="https://www.marianfusek.com/media/projects/aims/images/slide-02/04-about.jpg" alt="AIMS about concept" loading="lazy"></figure>
+              <figure class="slide-card"><img src="https://www.marianfusek.com/media/projects/aims/images/slide-02/05-testimonials.jpg" alt="AIMS testimonials concept" loading="lazy"></figure>
+              <figure class="slide-card"><img src="https://www.marianfusek.com/media/projects/aims/images/slide-02/06-blog.jpg" alt="AIMS blog concept" loading="lazy"></figure>
+              <figure class="slide-card"><img src="https://www.marianfusek.com/media/projects/aims/images/slide-02/07-contact.jpg" alt="AIMS contact concept" loading="lazy"></figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="case-section light slider-block">
+          <div class="case-kicker">
+            <div>
+              <div class="l">Slide deck / set 02</div>
+              <h3>Socials and support,<br><em>still on-system.</em></h3>
+            </div>
+            <p>Even supporting assets needed the same composure: consistent, minimal and ready to scale across touchpoints.</p>
+          </div>
+          <div class="slider-surface with-bg" style="--bg:url('https://www.marianfusek.com/media/projects/aims/images/slide-02/00-aims-bgr.jpg')">
+            <div class="slider-head">
+              <div class="meta">AIMS / slide-03</div>
+              <div class="slider-controls">
+                <button class="slider-btn" type="button" data-slider-prev data-hover="PREV"><b>←</b></button>
+                <button class="slider-btn" type="button" data-slider-next data-hover="NEXT"><b>→</b></button>
+              </div>
+            </div>
+            <div class="slider-rail" data-slider>
+              <figure class="slide-card"><img src="https://www.marianfusek.com/media/projects/aims/images/slide-03/03-aims-socials-1.jpg" alt="AIMS socials concept one" loading="lazy"></figure>
+              <figure class="slide-card"><img src="https://www.marianfusek.com/media/projects/aims/images/slide-03/03-aims-socials-2.jpg" alt="AIMS socials concept two" loading="lazy"></figure>
+              <figure class="slide-card"><img src="https://www.marianfusek.com/media/projects/aims/images/slide-03/03-aims-socials-3.jpg" alt="AIMS socials concept three" loading="lazy"></figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="case-section soft">
+          <div class="case-kicker">
+            <div>
+              <div class="l">Last preview</div>
+              <h3>One more<br><em>touchpoint.</em></h3>
+            </div>
+            <p>A final look at the system behaving outside the screen — still clean, still deliberate, still recognizably part of the same world.</p>
+          </div>
+          <figure class="final-preview"><img src="https://www.marianfusek.com/media/projects/aims/images/04-aims-merch-1.jpg" alt="AIMS merchandise preview" loading="lazy"></figure>
+        </section>
+
+        <div class="case-end">
+          <span class="l">End of case study / AIMS</span>
+          <button type="button" data-case-close data-hover="CLOSE">Return to ENNUI <i>×</i></button>
+        </div>
+      </article>
+    </div>
   </div>
 </div>
 
 <script>
-(()=>{const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;const pre=document.getElementById('preloader'),words=[...document.querySelectorAll('.preword')];if(reduced)pre.classList.add('done');else{let i=0;const run=()=>{words.forEach(w=>w.classList.remove('show'));if(i<words.length){words[i++].classList.add('show');setTimeout(run,i===words.length?760:520)}else pre.classList.add('done')};setTimeout(run,180)}
-const cursor=document.getElementById('cursor'),label=document.getElementById('cursorLabel');if(matchMedia('(pointer:fine)').matches){addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';label.style.left=e.clientX+16+'px';label.style.top=e.clientY+14+'px';cursor.classList.add('on');const x=(e.clientX/innerWidth-.5)*2,y=(e.clientY/innerHeight-.5)*2;document.documentElement.style.setProperty('--mx',x);document.documentElement.style.setProperty('--my',y)});document.addEventListener('mouseover',e=>{const t=e.target.closest('[data-hover],a,button');if(!t)return;cursor.classList.add('link');label.textContent=t.dataset.hover||'OPEN';label.classList.add('on')});document.addEventListener('mouseout',e=>{if(e.target.closest('[data-hover],a,button')){cursor.classList.remove('link');label.classList.remove('on')}})}
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -6%'});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));let last=0;const header=document.getElementById('header');addEventListener('scroll',()=>{const y=scrollY;header.classList.toggle('hide',y>last&&y>180);last=y},{passive:true});
-const buttons=[...document.querySelectorAll('#serviceIndex button')],word=document.getElementById('serviceWord'),copy=document.getElementById('serviceCopy');buttons.forEach(btn=>btn.addEventListener('mouseenter',()=>{if(btn.classList.contains('active'))return;buttons.forEach(b=>b.classList.remove('active'));btn.classList.add('active');word.classList.add('swap');setTimeout(()=>{word.innerHTML='<em>'+btn.dataset.word+'</em>';copy.textContent=btn.dataset.copy;word.classList.remove('swap')},180)}));
-const track=document.getElementById('marqueeTrack');let group=track.querySelector('.marquee-group');const fillMarquee=()=>{while(track.scrollWidth<innerWidth*3&&track.children.length<12)track.appendChild(group.cloneNode(true));};fillMarquee();addEventListener('resize',fillMarquee);let pos=0,lastT=performance.now();function marquee(t){const dt=Math.min(40,t-lastT);lastT=t;pos-=dt*.045;const w=group.offsetWidth||1;if(-pos>=w)pos+=w;track.style.transform=`translate3d(${pos}px,0,0)`;requestAnimationFrame(marquee)}if(!reduced)requestAnimationFrame(marquee);
+(()=>{
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const pre = document.getElementById('preloader');
+  const words = [...document.querySelectorAll('.preword')];
+  if(reduced){
+    pre.classList.add('done');
+  }else{
+    let i = 0;
+    const run = ()=>{
+      words.forEach(w=>w.classList.remove('show'));
+      if(i < words.length){
+        words[i++].classList.add('show');
+        setTimeout(run, i === words.length ? 760 : 520);
+      }else{
+        pre.classList.add('done');
+      }
+    };
+    setTimeout(run,180);
+  }
 
-/* ---------- IMMERSIVE CASE STUDY ---------- */
-const caseOverlay=document.getElementById('miunaeCase'),caseViewport=document.getElementById('miunaeViewport'),caseTrigger=document.getElementById('miunaeTrigger'),siteMain=document.querySelector('main'),siteHeader=document.getElementById('header');
-let caseScrollY=0,caseReturnFocus=null,caseCloseTimer=null;
-const caseFocusables=()=>[...caseOverlay.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])')].filter(el=>!el.hasAttribute('hidden'));
-function setCaseOrigin(source){const media=source&&source.querySelector('.project-media');const r=media?media.getBoundingClientRect():{top:innerHeight*.46,left:innerWidth*.08,right:innerWidth*.92,bottom:innerHeight*.54};caseOverlay.style.setProperty('--case-top',Math.max(0,r.top)+'px');caseOverlay.style.setProperty('--case-right',Math.max(0,innerWidth-r.right)+'px');caseOverlay.style.setProperty('--case-bottom',Math.max(0,innerHeight-r.bottom)+'px');caseOverlay.style.setProperty('--case-left',Math.max(0,r.left)+'px')}
-function lockCasePage(){caseScrollY=scrollY;document.body.classList.add('case-locked');document.body.style.top=-caseScrollY+'px';siteMain.inert=true;siteHeader.inert=true}
-function unlockCasePage(){document.body.classList.remove('case-locked');document.body.style.top='';siteMain.inert=false;siteHeader.inert=false;scrollTo(0,caseScrollY)}
-function openCase(source,pushHistory=true){if(caseOverlay.dataset.state==='open'||caseOverlay.dataset.state==='opening')return;clearTimeout(caseCloseTimer);caseReturnFocus=document.activeElement;setCaseOrigin(source);caseViewport.scrollTop=0;caseOverlay.setAttribute('aria-hidden','false');caseOverlay.dataset.state='opening';lockCasePage();if(pushHistory&&location.hash!=='#miunae')history.pushState({ennuiCase:'miunae'},'', '#miunae');requestAnimationFrame(()=>requestAnimationFrame(()=>{caseOverlay.dataset.state='open';setTimeout(()=>caseOverlay.querySelector('[data-case-close]').focus({preventScroll:true}),720)}))}
-function closeCase(){if(caseOverlay.dataset.state==='closed'||caseOverlay.dataset.state==='closing')return;caseOverlay.dataset.state='closing';clearTimeout(caseCloseTimer);caseCloseTimer=setTimeout(()=>{caseOverlay.dataset.state='closed';caseOverlay.setAttribute('aria-hidden','true');caseViewport.scrollTop=0;unlockCasePage();if(caseReturnFocus&&caseReturnFocus.focus)caseReturnFocus.focus({preventScroll:true})},980)}
-function requestCaseClose(){const owns=history.state&&history.state.ennuiCase==='miunae';closeCase();if(owns)history.back();else if(location.hash==='#miunae')history.replaceState(history.state,'',location.pathname+location.search)}
-caseTrigger.addEventListener('click',e=>{e.preventDefault();openCase(caseTrigger,true)});caseOverlay.querySelectorAll('[data-case-close]').forEach(btn=>btn.addEventListener('click',requestCaseClose));
-caseViewport.addEventListener('scroll',()=>{const max=caseViewport.scrollHeight-caseViewport.clientHeight;caseOverlay.style.setProperty('--case-progress',max?caseViewport.scrollTop/max:0)},{passive:true});
-document.addEventListener('keydown',e=>{if(caseOverlay.dataset.state!=='open')return;if(e.key==='Escape'){e.preventDefault();requestCaseClose();return}if(e.key==='Tab'){const f=caseFocusables();if(!f.length)return;const first=f[0],last=f[f.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
-addEventListener('popstate',()=>{if(caseOverlay.dataset.state==='open'||caseOverlay.dataset.state==='opening')closeCase();else if(location.hash==='#miunae')openCase(caseTrigger,false)});
-if(location.hash==='#miunae')setTimeout(()=>openCase(caseTrigger,false),2400);
+  const cursor = document.getElementById('cursor');
+  const cursorLabel = document.getElementById('cursorLabel');
+  if(matchMedia('(hover:hover) and (pointer:fine)').matches){
+    let tx = innerWidth/2, ty = innerHeight/2, cx = tx, cy = ty;
+    const speed = .34;
+    addEventListener('mousemove',e=>{
+      tx = e.clientX; ty = e.clientY;
+      const x = (e.clientX / innerWidth - .5) * 2;
+      const y = (e.clientY / innerHeight - .5) * 2;
+      document.documentElement.style.setProperty('--mx', x);
+      document.documentElement.style.setProperty('--my', y);
+      cursor.classList.add('on');
+    }, {passive:true});
+    const animateCursor = ()=>{
+      cx += (tx - cx) * speed;
+      cy += (ty - cy) * speed;
+      cursor.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`;
+      cursorLabel.style.transform = `translate(${cx + 16}px,${cy + 14}px)`;
+      requestAnimationFrame(animateCursor);
+    };
+    animateCursor();
+    document.addEventListener('mouseover',e=>{
+      const t = e.target.closest('[data-hover],a,button');
+      if(!t) return;
+      cursor.classList.add('link');
+      cursorLabel.textContent = t.dataset.hover || 'OPEN';
+      cursorLabel.classList.add('on');
+    });
+    document.addEventListener('mouseout',e=>{
+      if(e.target.closest('[data-hover],a,button')){
+        cursor.classList.remove('link');
+        cursorLabel.classList.remove('on');
+      }
+    });
+  }
 
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('[data-reveal], .reveal').forEach(el=>revealObserver.observe(el));
+
+  let lastY = 0;
+  const header = document.getElementById('header');
+  addEventListener('scroll',()=>{
+    const y = scrollY;
+    header.classList.toggle('hide', y > lastY && y > 180);
+    lastY = y;
+  }, {passive:true});
+
+  const serviceButtons = [...document.querySelectorAll('#serviceIndex button')];
+  const serviceWord = document.getElementById('serviceWord');
+  const serviceCopy = document.getElementById('serviceCopy');
+  serviceButtons.forEach(btn=>btn.addEventListener('mouseenter',()=>{
+    if(btn.classList.contains('active')) return;
+    serviceButtons.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    serviceWord.classList.add('swap');
+    setTimeout(()=>{
+      serviceWord.innerHTML = `<em>${btn.dataset.word}</em>`;
+      serviceCopy.textContent = btn.dataset.copy;
+      serviceWord.classList.remove('swap');
+    }, 170);
+  }));
+
+  document.querySelectorAll('.slider-block').forEach(block=>{
+    const rail = block.querySelector('[data-slider]');
+    if(!rail) return;
+    const prev = block.querySelector('[data-slider-prev]');
+    const next = block.querySelector('[data-slider-next]');
+    const amount = ()=> Math.max(rail.clientWidth * .82, 280);
+    prev && prev.addEventListener('click',()=> rail.scrollBy({left:-amount(), behavior:reduced ? 'auto' : 'smooth'}));
+    next && next.addEventListener('click',()=> rail.scrollBy({left: amount(), behavior:reduced ? 'auto' : 'smooth'}));
+  });
+
+  const overlays = [...document.querySelectorAll('.case-overlay')];
+  const main = document.querySelector('main');
+  const body = document.body;
+  let lockedScroll = 0;
+  let currentCase = null;
+  let returnFocus = null;
+
+  function setOrigin(overlay, source){
+    const media = source ? source.querySelector('.project-media') : null;
+    const r = media ? media.getBoundingClientRect() : {top:innerHeight*.44,left:innerWidth*.08,right:innerWidth*.92,bottom:innerHeight*.56};
+    overlay.style.setProperty('--case-top', Math.max(0, r.top) + 'px');
+    overlay.style.setProperty('--case-right', Math.max(0, innerWidth - r.right) + 'px');
+    overlay.style.setProperty('--case-bottom', Math.max(0, innerHeight - r.bottom) + 'px');
+    overlay.style.setProperty('--case-left', Math.max(0, r.left) + 'px');
+  }
+  function lockPage(){
+    lockedScroll = scrollY;
+    body.classList.add('locked');
+    body.style.top = `-${lockedScroll}px`;
+    main.inert = true;
+    header.inert = true;
+  }
+  function unlockPage(){
+    body.classList.remove('locked');
+    body.style.top = '';
+    main.inert = false;
+    header.inert = false;
+    scrollTo(0, lockedScroll);
+  }
+  function openOverlay(name, source, push=true){
+    const overlay = document.getElementById(name + 'Case');
+    if(!overlay || currentCase === overlay) return;
+    if(currentCase) forceClose(currentCase, false);
+    setOrigin(overlay, source);
+    returnFocus = document.activeElement;
+    currentCase = overlay;
+    lockPage();
+    overlay.querySelector('.case-viewport').scrollTop = 0;
+    overlay.setAttribute('aria-hidden','false');
+    overlay.dataset.state = 'opening';
+    if(push && location.hash !== '#' + name) history.pushState({case:name}, '', '#' + name);
+    requestAnimationFrame(()=> requestAnimationFrame(()=>{
+      overlay.dataset.state = 'open';
+      setTimeout(()=>{
+        const closeBtn = overlay.querySelector('[data-case-close]');
+        closeBtn && closeBtn.focus({preventScroll:true});
+      }, reduced ? 10 : 380);
+    }));
+  }
+  function forceClose(overlay, shouldUnlock=true){
+    overlay.dataset.state = 'closing';
+    setTimeout(()=>{
+      overlay.dataset.state = 'closed';
+      overlay.setAttribute('aria-hidden','true');
+      overlay.querySelector('.case-viewport').scrollTop = 0;
+      if(shouldUnlock){
+        unlockPage();
+        if(returnFocus && returnFocus.focus) returnFocus.focus({preventScroll:true});
+      }
+      if(currentCase === overlay) currentCase = null;
+    }, reduced ? 20 : 720);
+  }
+  function closeCurrent(useHistory=true){
+    if(!currentCase) return;
+    const overlay = currentCase;
+    const caseName = overlay.dataset.case;
+    forceClose(overlay, true);
+    if(useHistory && location.hash === '#' + caseName){
+      history.back();
+    }else if(location.hash === '#' + caseName){
+      history.replaceState(history.state, '', location.pathname + location.search);
+    }
+  }
+
+  document.querySelectorAll('[data-case-open]').forEach(trigger=>{
+    trigger.addEventListener('click',e=>{
+      e.preventDefault();
+      openOverlay(trigger.dataset.caseOpen, trigger, true);
+    });
+  });
+  overlays.forEach(overlay=>{
+    overlay.querySelectorAll('[data-case-close]').forEach(btn=>btn.addEventListener('click',()=>closeCurrent(true)));
+    overlay.querySelector('.case-viewport').addEventListener('scroll',()=>{
+      const viewport = overlay.querySelector('.case-viewport');
+      const max = viewport.scrollHeight - viewport.clientHeight;
+      overlay.style.setProperty('--case-progress', max ? viewport.scrollTop / max : 0);
+    }, {passive:true});
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(!currentCase || currentCase.dataset.state !== 'open') return;
+    if(e.key === 'Escape'){
+      e.preventDefault();
+      closeCurrent(true);
+    }
+    if(e.key === 'Tab'){
+      const focusables = [...currentCase.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])')].filter(el=>!el.closest('[aria-hidden="true"]'));
+      if(!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  });
+
+  addEventListener('popstate',()=>{
+    const hash = location.hash.replace('#','');
+    if(hash === 'miunae' || hash === 'aims'){
+      if(!currentCase || currentCase.dataset.case !== hash){
+        const trigger = document.querySelector(`[data-case-open="${hash}"]`);
+        openOverlay(hash, trigger, false);
+      }
+    }else if(currentCase){
+      forceClose(currentCase, true);
+    }
+  });
+
+  if(location.hash === '#miunae' || location.hash === '#aims'){
+    const initial = location.hash.replace('#','');
+    const trigger = document.querySelector(`[data-case-open="${initial}"]`);
+    setTimeout(()=>openOverlay(initial, trigger, false), reduced ? 80 : 1600);
+  }
 })();
-</script></body></html>
+</script>
+</body>
+</html>
